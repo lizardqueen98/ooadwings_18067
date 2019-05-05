@@ -38,7 +38,7 @@ namespace ooadwings_18067
         public double StanjeNaRacunu { get => stanjeNaRacunu; set => stanjeNaRacunu = value; }
         abstract public void platiKauciju();
         abstract public void povratNovca();
-        public void dodajObavijest(Obavijest o)
+        public static void dodajObavijest(Obavijest o)
         {
             obavijesti.Add(o);
         }

@@ -6,6 +6,7 @@ namespace ooadwings_18067
     class Program
     {
         public static OoadWings ooadWings = new OoadWings();
+        public delegate void MojDelegat(Obavijest o);
         static void Main(string[] args)
         {
             ooadWings.napuni();
@@ -189,9 +190,14 @@ namespace ooadwings_18067
                                 else throw new Exception("Pogresan broj.");
                                 if (avion == null)
                                 {
-                                    Console.WriteLine("Avion ne postoji");
+                                    /*Console.WriteLine("Avion ne postoji");
                                     Obavijest obavijest = new Obavijest("Avion ne postoji", klijent.ID, DateTime.Now);
-                                    klijent.dodajObavijest(obavijest);
+                                    Klijent.dodajObavijest(obavijest);*/
+                                    Obavijest obavijest = new Obavijest("Avion ne postoji", klijent.ID, DateTime.Now);
+                                    MojDelegat delegat = printajNaKonzolu;
+                                    delegat(obavijest);
+                                    delegat = dodajUObavijesti;
+                                    delegat(obavijest);
                                     break;
                                 }
                                 int redniBrojAviona = 1;
@@ -297,6 +303,14 @@ namespace ooadwings_18067
 
                 }
             }
+        }
+        public static void printajNaKonzolu(Obavijest o)
+        {
+            Console.WriteLine(o);
+        }
+        public static void dodajUObavijesti(Obavijest o)
+        {
+            Klijent.dodajObavijest(o);
         }
     }
 

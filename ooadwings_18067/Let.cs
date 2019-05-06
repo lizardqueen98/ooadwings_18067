@@ -26,14 +26,19 @@ namespace ooadwings_18067
         public DateTime DatumPolaska => datumPolaska;
         public int dajDaneKoristenja()
         {
-            return (DatumPovratka - DatumPolaska).Days;
+            return (DatumPovratka - DatumPolaska).Days + 1;
         }
         public bool iznajmljenZaVikend()
         {
             if (dajDaneKoristenja() > 5) return true;
             DayOfWeek danPolaska = DatumPolaska.DayOfWeek;
             DayOfWeek danPovratka = DatumPovratka.DayOfWeek;
-            if (danPolaska == DayOfWeek.Saturday || danPovratka == DayOfWeek.Saturday || danPolaska == DayOfWeek.Sunday || danPovratka == DayOfWeek.Sunday) return true;
+            while (danPolaska != danPovratka)
+            {
+                if (danPolaska == DayOfWeek.Saturday || danPolaska == DayOfWeek.Sunday) return true;
+                danPolaska++;
+            }
+            //if (danPolaska == DayOfWeek.Saturday || danPovratka == DayOfWeek.Saturday || danPolaska == DayOfWeek.Sunday || danPovratka == DayOfWeek.Sunday) return true;
             return false;
         }
 
